@@ -7,7 +7,7 @@ import CurrentBlockCard from './components/latest_components/currentBlockCard';
 import Container from './components/latest_components/container';
 import BlockDetailsContainer from './components/block_details/blockDetailsContainer';
 import TransactionDetailsContainer from './components/transaction_details/transactionDetailsContainer';
-import AccountDetailsContainer from './components/account_details/accountDetailsContainer';
+import ModalAccount from './components/modal/ModalAccount';
 
 import TimeAgo from 'javascript-time-ago'
 
@@ -35,6 +35,7 @@ const alchemy = new Alchemy(settings);
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [account, setAccount] = useState("");
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -43,15 +44,22 @@ function App() {
   return(
     <>
     <Router>
-      <Header alchemy={alchemy} isModalOpen={isModalOpen} toggleModal={toggleModal} />
+      <Header alchemy={alchemy} setAccount={setAccount} toggleModal={toggleModal} />
       <main className="container mx-auto py-8 px-4 md:px-6">
       <CurrentBlockCard alchemy={alchemy} />
         <Routes>
           <Route path="/" element={<Container alchemy={alchemy} />} />
           <Route path="/block/:blockNumber" element={<BlockDetailsContainer alchemy={alchemy} />} />
-          <Route path="/transaction/:transactionHash" element={<TransactionDetailsContainer alchemy={alchemy} isModalOpen={isModalOpen} toggleModal={toggleModal} />} />
+          <Route path="/transaction/:transactionHash" element={<TransactionDetailsContainer alchemy={alchemy} setAccount={setAccount} toggleModal={toggleModal} />} />
         </Routes>
       </main>
+      {isModalOpen && (
+        <ModalAccount
+          alchemy={alchemy}
+          account={account}
+          toggleModal={toggleModal}
+        />
+      )}
     </Router>
     </>
   );

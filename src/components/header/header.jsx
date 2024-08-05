@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ModalAccount from "../modal/ModalAccount";
 
-const Header = ({alchemy, isModalOpen, toggleModal}) => {
+const Header = ({alchemy, setAccount, toggleModal}) => {
   const [searchValue, setSearchValue] = useState("");
 
   const navigate = useNavigate()
@@ -13,7 +13,7 @@ const Header = ({alchemy, isModalOpen, toggleModal}) => {
 
   const handleSearch = () => {
     if (searchValue.startsWith('0x') && searchValue.length === 42) {
-      console.log(searchValue)
+      setAccount(searchValue)
       toggleModal();
     } else if (searchValue.startsWith('0x') && value.length === 66) {
       navigate(`/transaction/${searchValue}`)
@@ -63,7 +63,6 @@ const Header = ({alchemy, isModalOpen, toggleModal}) => {
           </div>
         </div>
       </header>
-      {isModalOpen && <ModalAccount alchemy={alchemy} account={searchValue} toggleModal={toggleModal} />}
     </>
   );
 };

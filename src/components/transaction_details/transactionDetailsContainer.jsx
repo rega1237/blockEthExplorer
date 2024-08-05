@@ -5,10 +5,8 @@ import { Utils } from "alchemy-sdk";
 
 import ModalAccount from "../modal/ModalAccount";
 
-const TransactionDetailsContainer = ({ alchemy, isModalOpen, toggleModal }) => {
+const TransactionDetailsContainer = ({ alchemy, toggleModal, setAccount }) => {
   const [transactionData, setTransactionInfo] = useState();
-
-  const [account, setAccount] = useState();
   const { transactionHash } = useParams();
 
   useEffect(() => {
@@ -242,13 +240,6 @@ const TransactionDetailsContainer = ({ alchemy, isModalOpen, toggleModal }) => {
           </div>
         </div>
       </div>
-      {isModalOpen && (
-        <ModalAccount
-          alchemy={alchemy}
-          account={account}
-          toggleModal={toggleModal}
-        />
-      )}
     </>
   );
 };

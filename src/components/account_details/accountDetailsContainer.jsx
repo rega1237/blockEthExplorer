@@ -4,8 +4,6 @@ import { Utils } from "alchemy-sdk";
 const AccountDetailsContainer = ({ alchemy, account, toggleModal }) => {
   const [accountBalance, setAccountBalance] = useState();
 
-  console.log(account)
-
   useEffect(() => {
     const getAccountBalance = async () => {
       const response = await alchemy.core.getBalance(account, "latest");
@@ -16,7 +14,7 @@ const AccountDetailsContainer = ({ alchemy, account, toggleModal }) => {
     if (account) {
       getAccountBalance();
     }
-  }, []);
+  }, [account]);
 
   return (
     <div className="w-full h-full">

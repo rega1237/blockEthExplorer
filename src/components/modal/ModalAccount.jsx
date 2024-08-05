@@ -8,8 +8,6 @@ const ModalAccount = ({alchemy, account, toggleModal}) => {
     return null
   }
 
-  console.log(account, "modalAccount")
-
   return createPortal(<AccountDetailsContainer alchemy={alchemy} account={account} toggleModal={toggleModal} />, modalContainer);
 }
 

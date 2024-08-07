@@ -38,7 +38,7 @@ const Header = ({alchemy, setAccount, toggleModal}) => {
           <div className="relative w-full max-w-md" data-id="5">
             <input
               className="flex h-10 border border-input text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full rounded-md bg-primary-foreground px-4 py-2 text-primary focus:outline-none focus:ring-2 focus:ring-primary-foreground"
-              placeholder="Search by block hash or wallet address"
+              placeholder="Search by block number, transaction or account"
               data-id="6"
               type="search"
               onChange={handleSearchValue}
